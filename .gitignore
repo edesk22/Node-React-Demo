@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/mi-app-react/node_modules
+/mi-app-react/.pnp
+/mi-app-react/.pnp.js
+
+# testing
+/mi-app-react/coverage
+
+# production
+/mi-app-react/build
+
+# misc
+/mi-app-react/.DS_Store
+/mi-app-react/.env.local
+/mi-app-react/.env.development.local
+/mi-app-react/.env.test.local
+/mi-app-react/.env.production.local
+
+/mi-app-react/npm-debug.log*
+/mi-app-react/yarn-debug.log*
+/mi-app-react/yarn-error.log*
