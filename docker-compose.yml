@@ -1,35 +1,6 @@
-version: '3.8'
-
 services:
-  traefik:
-    image: traefik:v3.0
-    container_name: traefik
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    command:
-      - "--api.dashboard=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - web
-
   mi-app:
     build: ./mi-app-react
-    container_name: mi-app-react
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.mi-app.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.mi-app.entrypoints=web"
-      - "traefik.http.services.mi-app.loadbalancer.server.port=3000"
-    networks:
-      - web
-
-networks:
-  web:
-    external: false
-
+    restart: always
+    ports:
+      - "3000:3000"

@@ -21,3 +21,6 @@
 /mi-app-react/npm-debug.log*
 /mi-app-react/yarn-debug.log*
 /mi-app-react/yarn-error.log*
+docker-compose-n8n.yml
+docker-compose-2.yml
+The-env.txt
