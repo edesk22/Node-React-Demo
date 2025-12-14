@@ -1,7 +1,7 @@
 http:
   routers:
     mi-app:
-      rule: "PathPrefix(`/`)"
+      rule: "Host(`localhost`) || PathPrefix(`/`)"
       entryPoints:
         - web
       service: mi-app
