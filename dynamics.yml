@@ -1,0 +1,13 @@
+http:
+  routers:
+    mi-app:
+      rule: "PathPrefix(`/`)"
+      entryPoints:
+        - web
+      service: mi-app
+    
+  services:
+    mi-app:
+      loadBalancer:
+        servers:
+          - url: "http://mi-app:3000"

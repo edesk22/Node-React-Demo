@@ -1,6 +1,23 @@
 services:
+  traefik:
+    image: "traefik:v2.10"
+    restart: always
+    command:
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--providers.file.filename=/dynamic.yml"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./dynamic.yml:/dynamic.yml
+
   mi-app:
     build: ./mi-app-react
     restart: always
-    ports:
-      - "3000:3000"
+    labels:
+      - "traefik.enable=true"

@@ -24,3 +24,4 @@
 docker-compose-n8n.yml
 docker-compose-2.yml
 The-env.txt
+docker-compose-simple.yml
