@@ -1,13 +1,18 @@
 services:
   traefik:
     image: "traefik:v2.10"
+    container_name: traefik
     restart: always
     command:
       - "--api.dashboard=true"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
       - "--entrypoints.web.address=:80"
+      - "--log.level=DEBUG"
+    environment:
+      - DOCKER_API_VERSION=1.44
     ports:
       - "80:80"
       - "8080:8080"
@@ -18,12 +23,12 @@ services:
 
   mi-app:
     build: ./mi-app-react
+    container_name: mi-app
     restart: always
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mi-app.rule=PathPrefix(`/`)"
       - "traefik.http.routers.mi-app.entrypoints=web"
-      - "traefik.http.routers.mi-app.priority=1"
       - "traefik.http.services.mi-app.loadbalancer.server.port=80"
     networks:
       - web
@@ -31,3 +36,4 @@ services:
 networks:
   web:
     driver: bridge
+
