@@ -8,6 +8,7 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
+      - "--providers.docker.network=web"
     ports:
       - "80:80"
       - "8080:8080"
@@ -19,6 +20,8 @@ services:
   mi-app:
     build: ./mi-app-react
     restart: always
+    expose:
+      - "3000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mi-app.rule=PathPrefix(`/`)"
