@@ -24,7 +24,7 @@ services:
       - "traefik.http.routers.mi-app.rule=PathPrefix(`/`)"
       - "traefik.http.routers.mi-app.entrypoints=web"
       - "traefik.http.routers.mi-app.priority=1"
-      - "traefik.http.services.mi-app.loadbalancer.server.port=3000"
+      - "traefik.http.services.mi-app.loadbalancer.server.port=80"
     networks:
       - web
 
